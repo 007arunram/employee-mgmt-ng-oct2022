@@ -1,0 +1,17 @@
+.invalid-feedback
+{
+  margin-left: 25px;
+}
+
+.bg-image {
+    background-image: url('C:\angular-training\employee-mgmt-ng-oct2022\src\assets\login-split.jpg');
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .jumbotron{
+    background: rgba(134, 133, 133, 0.5);
+    position: relative;
+    padding: 50px;
+    margin-top: 25px;
+  }

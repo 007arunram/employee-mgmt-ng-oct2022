@@ -1,0 +1,16 @@
+<ul class="navbar-nav me-auto mb-2 mb-md-0">
+  <!-- back to top -->
+  <ng-content [select] ="backtotop"></ng-content>
+
+  <li class="nav-item" *ngFor="let menuItem of menuItems">
+    <a
+      class="nav-link"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: menuItem.isActive }"
+      routerLink="{{ menuItem.url }}"
+      >{{ menuItem.name }}</a
+    >
+  </li>
+  <!-- login & signup -->
+  <ng-content select="[authLinks]"></ng-content>
+</ul>

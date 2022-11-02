@@ -1,0 +1,59 @@
+<!-- Ng Zone -->
+<div>
+  <h1>{{ featureName }}</h1>
+
+  <app-calc></app-calc>
+
+  <h2>Demo: NgZone</h2>
+
+  <p>Progress: {{ progress }}%</p>
+  <p *ngIf="progress >= 100">Done processing {{ label }} of Angular zone!</p>
+
+  <button (click)="processWithinAngularZone()">
+    Process within Angular zone
+  </button>
+  <button (click)="processOutsideOfAngularZone()">
+    Process outside of Angular zone
+  </button>
+</div>
+<hr />
+
+<!-- Angular ngx translate -->
+<div>
+  <h2>{{ "TRANSLATE.TITLE" | translate }}</h2>
+  <label>
+    {{ "TRANSLATE.SELECT" | translate }}
+    <select #langSelect (change)="translate.use(langSelect.value)">
+      <option
+        *ngFor="let lang of translate.getLangs()"
+        [value]="lang"
+        [selected]="lang === translate.currentLang"
+      >
+        {{ lang }}
+      </option>
+    </select>
+  </label>
+</div>
+<hr />
+
+<!-- Angular Animations -->
+<h2>Angular Animations</h2>
+
+<p *ngIf="display" @inOutPaneAnimation>
+  Start editing to see some magic happen :)
+</p>
+<button (click)="display = !display">Animate</button>
+<hr />
+
+<nav>
+  <button type="button" (click)="toggle()">Toggle Open/Closed</button>
+</nav>
+<hr />
+<div [@.disabled]="isDisabled">
+  <div
+    [@childAnimation]="isOpen ? 'open' : 'closed'"
+    class="open-close-container"
+  >
+    <p>The box is now {{ isOpen ? "Open" : "Closed" }}!</p>
+  </div>
+</div>

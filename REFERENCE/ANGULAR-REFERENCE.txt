@@ -1,0 +1,644 @@
+
+Angular 
+---
+  To create Angular Project -- you need Angular CLI  
+  npm i @angular/cli -g 
+
+  Angular 2   - 2016  - CLI Version 1.2.x 
+  Angular 4   - 2017  - CLI Version 1.4.x 
+  Angular 5   - 2017  - CLI Version 1.6.x 
+
+  Angular 6   - 2018  - CLI Version 6.x  (ng cli followed semver)
+  Angular 7   - 2018  - CLI Version 7.x 
+  Angular 8   - 2019  - CLI Version 8.x 
+  Angular 9   - 2020  - CLI Version 9.x 
+  Angular 10  - 2020  - CLI Version 10.x  
+  Angular 11  - 2020  - CLI Version 11.x 
+  Angular 12  - 2021  - CLI Version 12.x 
+  Angular 13  - 2021  - CLI Version 13.x 
+  Angular 14  - 2022  - CLI Version 14.x 
+  Angular 15  - 2022  - CLI Version 15.x (due by nov/dec 2022)
+
+
+Building Blocks 
+--
+  Components [DONE]
+    HTML 
+    CSS 
+    TS 
+    SPEC.TS 
+
+  Directives [DONE]
+    TS [DONE]
+    SPEC.TS [DONE]
+
+  Services [DONE]
+    TS 
+    SPEC.TS 
+
+  Interfaces /Models  [DONE ]
+  Modules [DONE]
+  Pipes [DONE]
+  Guards [DONE]
+  Classes [DONE]
+  Interceptors [DONE]
+
+---
+
+Concepts
+--
+  ViewEncapsulation [DONE]
+  Data Binding [DONE]
+  Routing [DONE]
+  Dependency Injection [DONE]
+  RxJS/Observables [DONE]
+  Subscription [DONE]
+  Lazy Loading 
+
+  Unit Testing 
+    Components [DONE]
+    Directives [DONE]
+    Services [DONE]
+    Pipes [DONE]
+    Guards [TODO]
+    Classes [TODO]
+    Interceptors [TODO]
+
+  Internationalization (i18n)  [DONE]
+  ng animations [DONE]
+  angular material  [DONE]
+  
+--
+
+NgRx - Framework  [DONE]
+---
+
+
+
+Employee Management App 
+--
+  Add New Employee 
+  List Employees 
+  Employee Details 
+  Update Employee 
+  Delete Employee 
+
+---
+Thinking in Angular 
+  1. Identify the number of components 
+  2. Identify the hierarchy of components 
+---
+
+Building Block 
+--
+  src/
+    components/
+    directives/
+    services/
+    pipes/
+
+Feature-wise & Building Block wise Project Structure
+--
+  src/
+    app/ 
+      shared/
+        components/
+          header/
+            ...
+            ...
+            ...
+            ...
+          footer/
+            ... ts 
+            ... spec.ts 
+          menu/
+            ...
+            ...
+            ...
+        pipes/
+          ellipsis/
+            ...
+            ...
+        utils/
+      concepts/
+        components/       
+        directives/
+          ...
+          ...
+          ...
+      home/
+      about/
+      unit-testing-demo/
+        components/
+        directives/
+      employees/
+        components/
+          add-employee/ 
+          list-employees/
+          employee-details/
+        services/
+        models/
+        ...
+        ...
+      products/
+        components/
+        services/
+        models/
+        ...
+        ...
+      auth/
+        components/
+          login/
+          signup/ 
+      
+
+Routing 
+---
+
+  Single Page Apps 
+  --
+    7 Characteristics 
+    ---
+      1. Pages should not refresh [DONE]
+      2. URL should change [DONE]
+      3. History should be maintained [DONE]
+      4. Header and footer should be intact [DONE]
+      5. Section in between header and footer should be updated [DONE]
+      6. Active menu should be set [TODO]
+      7. Page Title should also be set [TODO]
+    
+  ---
+    Step 0: 
+      Identify the URLs and matching components 
+
+        localhost:4200/           - HomeComponent 
+        localhost:4200/concepts   - ConceptsComponent 
+        localhost:4200/about      - AboutComponent 
+
+    Step 1:
+    --  
+      LEt's setup the URLs in menu.comp.html 
+
+    Step 2: 
+    =----
+      Let's create the components. 
+        ng g c home -t -s 
+        ng g c concepts -s 
+        ng g c about -s 
+
+    Step 3: 
+    --
+      Let's check the app. The URLs are not stable. 
+
+      Let's config the routes in app-routing.module.ts 
+
+    Step 4: 
+    --
+      Let's check the app. The URLs are stable. But the comp is not loaded in b/w header and footer
+
+      In app.comp.html in between header and footer, let's load the config comps. 
+
+      <router-outlet></router-outlet>
+
+    Step 5: 
+    ---
+      Let's check the app. Pages are refreshed. Let's fix it. 
+
+      in menu.comp.html -- replace all href to routerLink 
+
+
+---
+
+Coding Practices 
+-------------
+  Casing Types 
+  ------------- 
+    1. PascalCase 
+        * recommended for classes, interfaces (Ex: class Car, interface IUser)
+
+    2. camelCase 
+        * recommended for variables, const, methods 
+        * recommended for attribute directives 
+
+    3. kebab-case
+        * recommended for component selectors (Ex: app-root)
+        * preferred for css classes  (Ex: btn-primary)
+    
+    4. snake_case
+        * never ever use this 
+        * okay for const if architect accepts 
+          (ex: const MAX_CLASSES_PER_STUDENT = 10 )
+          
+
+  -------- 
+
+
+Data Binding 
+---
+  comp.TS => comp.HTML 
+
+  1. Interpolation [DONE] 
+      TS => HTML 
+      {{ }}
+
+  2. Property Binding [DONE]
+      TS => HTML 
+      []
+
+  3. Event Binding [DONE]
+      TS <== HTML 
+      ()
+
+  4. Two-Way Binding 
+      TS <=> HTML 
+      [(ngModel)] 
+
+      Note: applicable in form fields
+
+  5. Custom Property Binding [DONE]
+      []
+
+  6. Custom Event Binding [DONE]
+      ()
+
+
+---
+
+Cross Component Communication
+---------
+  1. Parent to Child Component Communication [DONE]
+      using Custom Property Binding with @Input() 
+      using content projection with ng-content -- @ContentChild() or @ContentChildren()
+
+  2. Child to Parent Component Communication
+      2.1 using Custom Event Binding using @Output() (child comp sends data to parent)
+      2.2 using @ViewChild(), @ViewChildren() (parent comp can access data from child comp)  [TODO]
+
+  3. Any to Any Component Communication
+      Prereq: Services, Dep Inj, RxJS/Observables, Subscription 
+
+=============
+
+
+
+Project: Calc 
+============
+  Sources: FRD, Use Cases, User Stories
+
+  requirements 
+    design (UI, F/E Arch, B/E Arch, DB Arch Design)
+      development 
+        testing 
+          deployment 
+            maintanance 
+
+dev => qa => (bugs) => dev => qa => (bugs) => dev => qa => (bugs) => dev => qa => (QA PASSES) => Deployment 
+
+Feature: Add 
+====
+  DEVELOPMENT 
+  ====
+    Reference: Test Cases (Requirement Doc)
+      1. add should take in only numbers as inputs 
+      2. add should always return only number as output 
+      3. add button should be disabled if wrong inputs entered 
+
+    function add(a: number, b: number): number{
+      return a + b;
+    }
+
+    add(10, 20);  //30 
+
+    (Testing Tools)
+
+
+Automated Testing 
+=====
+  4 Levels 
+  ---
+    0. Static Type Checking 
+        Tools: TypeScript 
+
+    1. Unit Testing [TO LEARN]
+        * testing tiny independent unit of a component 
+        * writing code to test our comp's code 
+        * testing the comp in isolation without connecting with rest api data
+        * Bug Reduction Density: 40-80% 
+
+        Tools: Jasmine JS, Karma 
+
+    2. Integration Testing 
+        * Different units, modules, or components tested as combined entity 
+        * Behavior of the app would be tested 
+        * Used for exposing issues in the integration of multiple units 
+
+        Example: [testing if a child comp can update parent comp]
+
+        Tools: Jasmine JS, Karma 
+
+    3. End to End Testing (E2E)
+        * Testing the whole app 
+        * usually a multi-step test combining multiple units and integration tests into one big test 
+        * tests are done is simulated browser; there may or may not be UI while the tests are running 
+
+        Tools: Selenium or CypressJS or Protractor or Cucumber or Tosca
+
+  2 Approaches  / Modern software dev methodologies (as of 2022)
+  --
+    dev writes test cases => dev writes fn code => (TOOLS) => instant feedback of success / failure
+
+    1. Test Driven development (TDD)
+        * is a programming Practice that instructs the dev to write NEW CODE only if an automated test has failed 
+
+        dev writes test cases 
+          (Instant Feedback of Failure/bug)
+            dev writes fn code 
+              (Instant Feedback of Success)
+                [CODE COMPLETE]
+
+        Testing Pattern: AAA (Arrange, Act, Assert)
+        Tools: JEST, Mocha, Chai 
+
+
+    2. Behavior Driven development (BDD) [TO LEARN]
+        * is an agile s/w methodology 
+        * an app is documented and designed around the behaviour the end user expects to experience
+
+        dev writes test cases (around the behaviour of the app)
+          (Instant Feedback of Failure/bug)
+            dev writes fn code 
+              (Instant Feedback of Success)
+                [CODE COMPLETE]
+
+        Testing Pattern: Given, When, Then 
+        Tools: Jasmine JS 
+
+    
+  2 Testing Patterns 
+  ---
+    1. AAA (Act, Arrange, Assert)
+    2. Given, When, Then 
+
+  Many Tools 
+  --
+    Jasmine JS  - BDD Testing Framework 
+    Karma JS    - Test Runner 
+
+
+What will you learn? 
+--
+  1. How to write tests?
+  2. Where to write tests?
+  3. How to test our app against the identified test cases?
+
+
+Unit Testing 
+---
+  Testing Components 
+    TS 
+      variables 
+      methods
+      conditionals 
+    HTML 
+    CSS 
+    Mocks 
+    Spies 
+  
+  Testing Directives (TODO)
+    Mock 
+  Testing Services 
+    Mock
+  Testing Pipes
+    Mock 
+  Testing Router (TODO)
+  Testing Classes (TODO)
+
+
+
+
+====
+
+Directives 
+--
+  * Special Instructions to the DOM 
+  * useful for altering apperance and behvaiour of an existing element
+
+  1. Components -- (are also directives only )
+      Used with a template. This type of directive is the most common directive type.
+
+  2. Attribute Directives 
+      Example: routerLink, routerLinkActive, ngModel, ngClass, ngStyle, ngForm, ngNativeValidate
+
+  3. Structural Directives
+      * the impact will be in structural layer (html)
+      *ngIf, *ngFor, ngSwitch 
+
+  4. Custom Attribute Directives 
+      ng g d concepts/directives/colorizer 
+    
+  5. Custom Structural Directives 
+
+Employee Management CRUD App 
+--
+  
+  Create an Employee  (CREATE)
+    localhost:4200/employees/add        Component: AddEmployeeComponent 
+
+    ng g c employees/components/add-employee -s 
+
+  List Employees (READ)
+    localhost:4200/employees/           Component: ListEmployeesComponent 
+
+    ng g c employees/components/list-employees -s 
+
+  Show Employee Details (READ)
+    localhost:4200/employees/1          Component: EmployeeDetailsComponent 
+
+    ng g c employees/components/employee-details -s 
+
+  Update Employee (UPDATE)
+    localhost:4200/employees/1          Component: EmployeeDetailsComponent 
+
+  Delete Employee (DELETE)
+    localhost:4200/employees/1          Component: EmployeeDetailsComponent 
+
+
+Modules 
+--
+  Feature Module 
+
+  Feature Routing Module
+
+
+  Step 1: 
+  --
+    Create a Feature Module for the employees and connect with the App Module 
+
+      ng g m employees/employees -m=app --flat 
+
+  Step 2: 
+  --
+    Create a Feature Routing Module for employees and connect with employees Module 
+      
+      ng g m employees/employees-routing -m=employees --flat 
+
+  Step 3: 
+  --
+    Create the necessary components for the employees feature 
+
+  Step 4: 
+  --  
+    config the URL's for the feature in feature routing module 
+
+  Step 5: 
+  --  
+    work on validations
+
+  Step 6:
+  --
+    work on form submission       
+
+Forms in Angular 
+---
+  1. Template Driven Forms
+      * will be developed in html 
+      * easiest 
+      * validations can be implemented through Directives 
+
+      Disadvantages
+      ---
+        1. Not Suitable for complex form validations 
+        2. Not Suitable for Unit Testing 
+
+  2. Reactive Forms [RECOMMENDED]
+      * will be developed with HTML + TS
+      * easy 
+      * validations can be implemented through validators 
+
+      Advantages
+      ---
+        1. Suitable for complex form validations 
+        2. Suitable for Unit Testing 
+
+----
+Pipes 
+---
+  * Tiny utilities to transform info from one format to another 
+
+  Built-in Pipes 
+  --
+    lowercase, uppercase
+
+  1. Pure Pipes 
+  2. Impure Pipes 
+
+----
+Interfaces for models 
+--
+  ng g interface Employee  (or)
+  ng g interface IEmployee (or)
+  ng g interface Employee --type=model // will get filename with .model.ts 
+
+Classes for Model 
+---
+  ng g cl Employee  (or)
+  ng g cl Employee --type=model   // will get filename with .model.ts 
+
+
+---
+Guards
+---
+  ng g g shared/guards/auth 
+
+
+
+HTTP 
+----
+  * Stateless 
+
+  Browser ===> Server 
+  Browser <=== Server (login )
+  Browser ===> Server 
+  Browser <=== Server (10 mails)
+  Browser ===> Server 
+  Browser <=== Server (mail opened)
+  
+  Authentication in Multiple ways 
+  ---
+    1. Session-Based Authentication ( Traditional Approach)
+        * when the user logs in server will create a session id 
+          * server will save the session id 
+            * server will process response and send the session id to the browser 
+              * browser should save the session id in cookies 
+                * post-login, every subsequent request hitting the server should carry the session id 
+                  * server will compare the session ids 
+                    * if both match then, proper response will be sent 
+                    * else, login again 
+
+    2. Token-Based Authentication (Modern Approach)
+        * when the user logs in server will generate a token 
+          * server will NOT SAVE the token 
+          * server will process response and send the token to the browser 
+            * browser should save the token in either cookies or local storage or session storage 
+              * post-login, every subsequent request hitting the server should carry the token (bearer token)
+                * then, token will be decoded, verified by the server
+                  * if valid, proper response will be sent 
+                  * else, login again 
+
+
+
+Build & Deployment 
+  ng build 
+
+  Build checklist 
+    1. remove all console logs
+    2. remove debugger; keyword from code
+    3. ng lint to see 0 errors 
+
+    ng build 
+
+    after deployment 
+    ---
+      click all links in your app. 
+      check console for errors 
+
+--
+Internationalization (i18n)
+---
+  is the process of designing and preparing your project for use in different locales around the world. 
+
+  * separating content for translation 
+  * updating app to support bidirection text (both LTR and RTL)
+  
+
+  en 
+  es 
+  fr 
+  ta 
+  ru 
+  de 
+
+--
+Localization (l10n)
+--
+  is the process of building versions of your project for different locales. 
+
+  
+  US
+  UK
+  CA 
+  IN 
+  AU 
+
+The above has to be done without changing app's code 
+Steps:
+--
+  Step 1: 
+    install dependencies (use @angular/localize library)
+
+  Step 2: 
+    internationalize the app 
+
+  Step 3: 
+    localize the app 
+abo
